@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    const Title = () => (
+      <h3 id="title" onMouseEnter={() => console.log("haha")}>
+        Hello! I'm a Title
+      </h3>
+    );
+
+    /*const span = React.createElement("h3", null, "Im span");*/
+    const Button = () => (
+      <button onClick={() => console.log("clicked!")}>Click Me!</button>
+    );
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+
+    ReactDOM.render(<Container />, root);
+  </script>
+</html>
