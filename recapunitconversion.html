@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    const App = () => {
+      const [distance, setDistance] = React.useState(0);
+      const [flip, setFlip] = React.useState(false);
+      const onChange = (event) => {
+        setDistance(event.target.value);
+      };
+
+      return (
+        <div>
+          <div>
+            <h1>Hello, I'm Super Converter</h1>
+
+            <input
+              onChange={onChange}
+              placeholder="M"
+              disabled={flip}
+              value={flip ? distance * 1000 + "M" : distance}
+            />
+            <input
+              onChange={onChange}
+              placeholder="KM"
+              disabled={!flip}
+              value={flip ? distance : distance / 1000 + "KM"}
+            />
+          </div>
+          <button
+            onClick={() => {
+              setDistance(0);
+            }}
+          >
+            Reset
+          </button>
+          <button
+            onClick={() => {
+              setFlip((current) => !current);
+            }}
+          >
+            {flip ? "M To KM" : "KM To M"}
+          </button>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
