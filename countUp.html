@@ -9,31 +9,26 @@
 
   <script type="text/babel">
     const root = document.getElementById("root");
-    let count = 0;
-    const countUp = () => {
-      count = count + 1;
-    };
-    const render = () => {
-      ReactDOM.render(<Container />, root);
-    };
-    const Title = () => <h3>Total Clicked: {count}</h3>;
-    const Button = () => (
-      <button
-        onClick={() => {
-          countUp();
-          render();
-        }}
-      >
-        Click me!
-      </button>
-    );
 
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-      </div>
-    );
+    const Title = () => <h3>Total Clicked:0</h3>;
+    const Button = () => <button onClick={countUp}>Click me!</button>;
+
+    const Container = () => {
+      const [data, setData] = React.useState(0);
+
+      return (
+        <div>
+          <h3>Total Clicked: {data}</h3>
+          <button
+            onClick={() => {
+              setData((current) => current + 1);
+            }}
+          >
+            Click me!
+          </button>
+        </div>
+      );
+    };
 
     ReactDOM.render(<Container />, root);
   </script>
