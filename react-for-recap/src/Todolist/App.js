@@ -18,11 +18,18 @@ const App = () => {
     setTodo(value);
   };
 
+  const onRemove = (event) => {
+    const todoId = event.target.parentElement.id;
+    setTodoArr((current) =>
+      current.filter((item, index) => index !== todoId * 1)
+    );
+  };
+
   return (
     <div>
       <Title />
       <Form onSubmit={onSubmit} onChange={onChange} />
-      <Paint todoArr={todoArr} />
+      <Paint todoArr={todoArr} Remove={onRemove} />
     </div>
   );
 };
