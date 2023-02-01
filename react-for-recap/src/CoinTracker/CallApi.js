@@ -6,11 +6,16 @@ const CallApi = () => {
   }, []);
 
   const [data, setData] = useState();
-  const fetchApi = () =>
-    fetch(` https://api.coinpaprika.com/v1/tickers?limit=10`)
-      .then((result) => result.json())
-      .then((jsonResult) => setData(jsonResult));
+  const [loading, setLoading] = useState(true);
 
-  return data;
+  const fetchApi = () =>
+    fetch(` https://api.coinpaprika.com/v1/tickers?limit=130`)
+      .then((result) => result.json())
+      .then((jsonResult) => {
+        setData(jsonResult);
+        setLoading((current) => !current);
+      });
+
+  return [data, loading];
 };
 export default CallApi;

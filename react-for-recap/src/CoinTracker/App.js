@@ -1,17 +1,20 @@
 import CallApi from "./CallApi";
+import Button from "./Button";
 
-const App = () => {
-  const data = CallApi();
-
+const Container = ({ data }) => {
   return (
     <div>
-      <ul>
-        {data.map((coin, index) => (
-          <li key={index}>{coin.name}</li>
-        ))}
-      </ul>
+      <Button coinData={data} />
     </div>
   );
 };
 
+const App = () => {
+  const [data, loading] = CallApi();
+
+  return <div>{loading ? null : <Container data={data} />}</div>;
+};
+
 export default App;
+
+//style={{ width: "100%", height: "100%", backgroundColor: "burlywood" }
