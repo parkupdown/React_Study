@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Map from "../components/Map";
 
 const Home = () => {
   return (

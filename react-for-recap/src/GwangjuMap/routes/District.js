@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Map from "../components/Map";
 
 const District = () => {
   const { district } = useParams();
@@ -40,13 +41,13 @@ const District = () => {
               <p>
                 도로명 주소 :{item.addrRoad} 지번 주소 : {item.addrJibun}
               </p>
-
               <span>{item.tourDestIntro}</span>
               <hr />
             </div>
           ))}
         </div>
       )}
+      <Map />
     </div>
   );
 };
