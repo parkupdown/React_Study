@@ -1,27 +1,15 @@
-import CallMovieApi from "./CallApi";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Detail from "./routes/Detail";
+import Home from "./routes/Home";
 
 function App() {
-  const [movieData, loading] = CallMovieApi();
-  console.log(movieData);
   return (
-    <div>
-      {loading ? (
-        <h1>loading...</h1>
-      ) : (
-        <ul>
-          {movieData.map((movie) => (
-            <li key={movie.id}>
-              <div>
-                <h3>{movie.title}</h3>
-                <img src={movie.medium_cover_image} />
-                <h4>{movie.genres}</h4>
-              </div>
-              <p>{movie.summary}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<Detail />} />
+      </Routes>
+    </Router>
   );
 }
 
