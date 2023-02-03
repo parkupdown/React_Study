@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Map from "../components/Map";
+import makeDistrictLatLng from "../utils/DistrictLatLng";
 
 const District = () => {
   const { district } = useParams();
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
+
+  const [districtLtd, districtLng] = makeDistrictLatLng(district);
 
   const callApi = () => {
     fetch(
@@ -23,7 +26,6 @@ const District = () => {
         });
         setData(districtArr);
         setLoading(false);
-        console.log(districtArr);
       });
   };
   useEffect(() => callApi(), []);
@@ -35,9 +37,11 @@ const District = () => {
         <h1>Loading...</h1>
       ) : (
         <div>
+          <Map lat={districtLtd} lng={districtLng} />
+          <hr />
           {data.map((item) => (
-            <div>
-              <li key={item.id}>{item.tourDestNm}</li>
+            <div key={item.id}>
+              <li>{item.tourDestNm}</li>
               <p>
                 도로명 주소 :{item.addrRoad} 지번 주소 : {item.addrJibun}
               </p>
@@ -47,7 +51,6 @@ const District = () => {
           ))}
         </div>
       )}
-      <Map />
     </div>
   );
 };
