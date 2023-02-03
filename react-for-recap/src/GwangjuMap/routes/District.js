@@ -7,7 +7,6 @@ const District = () => {
   const { district } = useParams();
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
-
   const [districtLtd, districtLng] = makeDistrictLatLng(district);
 
   const callApi = () => {
@@ -26,6 +25,7 @@ const District = () => {
         });
         setData(districtArr);
         setLoading(false);
+        console.log(data);
       });
   };
   useEffect(() => callApi(), []);
@@ -37,7 +37,7 @@ const District = () => {
         <h1>Loading...</h1>
       ) : (
         <div>
-          <Map lat={districtLtd} lng={districtLng} />
+          <Map lat={districtLtd} lng={districtLng} data={data} />
           <hr />
           {data.map((item) => (
             <div key={item.id}>
