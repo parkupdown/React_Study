@@ -1,8 +1,11 @@
 import { useEffect } from "react";
-
+import { useNavigate, useParams } from "react-router-dom";
 const { kakao } = window;
 
 const Map = ({ lat, lng, data }) => {
+  const navigate = useNavigate();
+  const { district } = useParams();
+
   // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
   function makeOverListener(map, marker, infowindow) {
     return function () {
@@ -15,6 +18,10 @@ const Map = ({ lat, lng, data }) => {
     return function () {
       infowindow.close();
     };
+  }
+
+  function makeClickListener() {
+    navigate(`/${district}/asd}`);
   }
 
   const targetLatLng = data.map((item) => [item.lat, item.lng]);
@@ -69,6 +76,9 @@ const Map = ({ lat, lng, data }) => {
         "mouseout",
         makeOutListener(infowindow)
       );
+      kakao.maps.event.addListener(marker, "click", function (mouseEvent) {
+        makeClickListener();
+      });
     }
   }, [lat, lng]);
 
