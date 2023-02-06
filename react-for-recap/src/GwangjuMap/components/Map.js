@@ -20,9 +20,9 @@ const Map = ({ lat, lng, data }) => {
     };
   }
 
-  function makeClickListener() {
+  function makeClickListener(markerTitle) {
     //클릭된 마커의 title을 가져오고싶다.
-    navigate(`/${district}/상세페이지}`, { state: data }); //Link로 수정해야 data를 넘겨줄수있다
+    navigate(`/${district}/${markerTitle}`, { state: data }); //Link로 수정해야 data를 넘겨줄수있다
   }
 
   const targetLatLng = data.map((item) => [item.lat, item.lng]);
@@ -78,7 +78,7 @@ const Map = ({ lat, lng, data }) => {
         makeOutListener(infowindow)
       );
       kakao.maps.event.addListener(marker, "click", (event) => {
-        makeClickListener();
+        makeClickListener(marker.Gb);
       });
     }
   }, [lat, lng]);
