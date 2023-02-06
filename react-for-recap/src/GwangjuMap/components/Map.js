@@ -49,7 +49,7 @@ const Map = ({ lat, lng, data }) => {
     map.setMaxLevel(8);
 
     const imageSrc =
-      "https://w.namu.la/s/254294b86f5ce9b28d6b319b106860f192b9f26bedf411afca1ca7ed73e640ac3111131fe99ace36182921fecc96ea4eafa5df13ea74fa079397d1ad66b2a840782ac15d014670f73c151fbfd2d05504ca53db4c1800dbda5aa6d6d602587ce4";
+      "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
     for (let i = 0; i < positions.length; i++) {
       const imgSize = new kakao.maps.Size(24, 35);
@@ -86,7 +86,12 @@ const Map = ({ lat, lng, data }) => {
   return (
     <div
       id="map"
-      style={{ width: "1000px", height: "400px", borderRadius: "30px" }}
+      style={{
+        width: "80vw",
+        height: "60vh",
+        borderRadius: "30px",
+        margin: "0 auto",
+      }}
     ></div>
   );
 };

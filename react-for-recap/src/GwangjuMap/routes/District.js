@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Map from "../components/Map";
 import makeDistrictLatLng from "../utils/DistrictLatLng";
+import styled from "../css/District.module.css";
 
 const District = () => {
   const { district } = useParams();
@@ -25,30 +26,19 @@ const District = () => {
         });
         setData(districtArr);
         setLoading(false);
-        console.log(data);
       });
   };
   useEffect(() => callApi(), []);
 
   return (
     <div>
-      <h1>{district} 관광지🧃</h1>
+      <h1>{district} 관광지</h1>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <div>
+        <div className={styled.mapBox}>
           <Map lat={districtLtd} lng={districtLng} data={data} />
           <hr />
-          {data.map((item) => (
-            <div key={item.id}>
-              <li>{item.tourDestNm}</li>
-              <p>
-                도로명 주소 :{item.addrRoad} 지번 주소 : {item.addrJibun}
-              </p>
-              <span>{item.tourDestIntro}</span>
-              <hr />
-            </div>
-          ))}
         </div>
       )}
     </div>
