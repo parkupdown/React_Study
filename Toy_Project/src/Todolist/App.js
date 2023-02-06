@@ -2,15 +2,19 @@ import Form from "./Form";
 import Title from "./Title";
 import Paint from "./Paint";
 import { useState } from "react";
+
+function resetInput(event) {
+  event.preventDefault();
+  event.target[0].value = "";
+}
 const App = () => {
   const [todoArr, setTodoArr] = useState([]);
 
   const onSubmit = (event) => {
-    event.preventDefault();
     const value = event.target[0].value;
-    event.target[0].value = "";
-
     setTodoArr((current) => [...current, value]);
+
+    resetInput(event);
   };
 
   const onRemove = (event) => {
@@ -22,7 +26,7 @@ const App = () => {
 
   return (
     <div>
-      <Title />
+      <Title count={todoArr.length} />
       <Form onSubmit={onSubmit} />
       <Paint todoArr={todoArr} Remove={onRemove} />
     </div>

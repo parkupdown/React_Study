@@ -2,8 +2,8 @@ import { useState } from "react";
 import styled from "./Button.module.css";
 
 const Button = ({ coinData, onClick }) => {
-  const [coinIndex, setCoinindex] = useState();
-  console.log(coinData);
+  const [coinIndex, setCoinindex] = useState(0);
+
   return (
     <div
       style={{
