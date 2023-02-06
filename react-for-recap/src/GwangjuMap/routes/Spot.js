@@ -11,7 +11,11 @@ const Spot = () => {
     <div>
       <h1>{spot}</h1>
       <hr />
-      <h2>주소지 : {spotData[0].addrJibun}</h2>
+      {spotData[0].addrJibun === `` ? (
+        <h2>주소지 : {spotData[0].addrRoad}</h2>
+      ) : (
+        <h2>주소지 : {spotData[0].addrJibun}</h2>
+      )}
 
       <p>{spotData[0].tourDestIntro}</p>
     </div>
